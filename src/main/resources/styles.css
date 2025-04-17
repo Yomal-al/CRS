@@ -1,0 +1,14 @@
+.loginButton{
+	-fx-background-color: #BAB6B2;
+
+}
+
+.loginButton:pressed{
+	-fx-background-color: #388E3C;
+
+}
+
+.loginButton:hover{
+	-fx-background-color: #A6A39E;
+
+}
