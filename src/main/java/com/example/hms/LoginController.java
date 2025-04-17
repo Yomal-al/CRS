@@ -74,15 +74,6 @@ public class LoginController {
         System.out.println(Password);
 
     }
-//    @FXML
-//    private void loginButtonEnter(){
-//        loginButton.setStyle("-fx-background-color:  A6A39E;");
-//    }
-//
-//    @FXML
-//    private void loginButtonExit(){
-//        loginButton.setStyle("-fx-background-color: BAB6B2;");
-//    }
 
     @FXML
     private void passwordToggle(ActionEvent event){
