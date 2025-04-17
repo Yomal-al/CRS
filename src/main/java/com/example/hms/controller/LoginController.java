@@ -1,4 +1,4 @@
-package com.example.hms;
+package com.example.hms.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

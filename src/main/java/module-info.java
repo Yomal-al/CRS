@@ -10,7 +10,10 @@ module com.example.hms {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens com.example.hms to javafx.fxml;
     exports com.example.hms;
+    exports com.example.hms.controller;
+    opens com.example.hms.controller to javafx.fxml;
 }
