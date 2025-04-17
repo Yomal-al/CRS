@@ -132,7 +132,24 @@ public class LoginController {
         }catch(Exception e) {
             System.out.println("Password invalid");
         }
+
+        try{
+            register_password.textProperty().addListener((obs, oldText, newText) -> {
+                if (!showPassword.isSelected()) {
+                    register_password.setText(newText);
+                }
+            });
+//            register_password.textProperty().addListener((obs, oldText, newText) -> {
+//                if (showPassword.isSelected()) {
+//                    register_password.setText(newText);
+//                }
+//            });
+
+        }catch(Exception e){
+            System.out.println("login password error");
+        }
     }
+
 
 
 }
