@@ -13,7 +13,12 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 450, 750);stage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
+        stage.setMaxWidth(450);
+        stage.setMaxHeight(850);
+        stage.setTitle("Course Registration System");
+
         stage.show();
+
     }
 
     public static void main(String[] args) {

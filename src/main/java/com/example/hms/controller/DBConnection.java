@@ -3,13 +3,71 @@ package com.example.hms.controller;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
-public class DBConnection {
-    private static final String URL="jdbc:mysql://localhost:3306/CRS";
-    private static final String USER="root";
-    private static final String PASSWORD="Yomal-2003";
 
-    public static Connection getConnection() throws SQLException{
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+//public class DBConnection {
+//    private static DBConnection dBConnection;
+//    private Connection connection;
+//
+//    private DBConnection() throws ClassNotFoundException,SQLException{
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "Yomal-2003");
+//
+//            String sql = "CREATE DATABASE IF NOT EXISTS CRS";
+//
+//            Statement statement = connection.createStatement();
+//            statement.executeUpdate(sql);
+//
+//            statement.close();
+//
+//            System.out.println("Table Created");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("Table Not Created");
+//        }
+//    }
+//
+//    public static DBConnection getInstance() throws ClassNotFoundException, SQLException{
+//        if(dBConnection==null){
+//            dBConnection = new DBConnection();
+//        }
+//        return dBConnection;
+//    }
+//
+//    public Connection getConnection() {
+//        return connection;
+//    }
+//
+//
+//}
+
+    public class DBConnection{
+        public static void main(String args[]){
+            Connection connection=null;
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "Yomal-2003");
+                if(connection!=null){
+                    System.out.println("Connected");
+                    String sql1="CREATE DATABASE IF NOT EXISTS CRS";
+                    String sql2="USE CRS";
+                    String sql3="CREATE TABLE student_details";
+
+
+                    Statement statement=connection.createStatement();
+                    statement.executeUpdate(sql1);
+                    statement.executeUpdate(sql2);
+                    statement.executeUpdate(sql2);
+
+
+                }else{
+                    System.out.println("Not Connected");
+                }
+            } catch (Exception  e) {
+                e.printStackTrace();
+            }
+        }
+
     }
-}
