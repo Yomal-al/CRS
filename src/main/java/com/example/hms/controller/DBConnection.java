@@ -50,17 +50,19 @@ import java.sql.Statement;
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "Yomal-2003");
                 if(connection!=null){
-                    System.out.println("Connected");
+
                     String sql1="CREATE DATABASE IF NOT EXISTS CRS";
                     String sql2="USE CRS";
-                    String sql3="CREATE TABLE student_details";
+                    String sql3="CREATE TABLE student_details(student_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50) , password VARCHAR(50), role VARCHAR(50))";
 
 
                     Statement statement=connection.createStatement();
+
                     statement.executeUpdate(sql1);
                     statement.executeUpdate(sql2);
-                    statement.executeUpdate(sql2);
+                    statement.executeUpdate(sql3);
 
+                    System.out.println("Connected");
 
                 }else{
                     System.out.println("Not Connected");
