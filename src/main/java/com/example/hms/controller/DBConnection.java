@@ -9,7 +9,7 @@ public class DBConnection {
 
     private static Connection connection;
 
-    // Initialize and create DB/tables
+    // ------------------Initialize and create DB/tables----------------------
     public static void initialize() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

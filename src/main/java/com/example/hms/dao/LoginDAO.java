@@ -2,10 +2,7 @@ package com.example.hms.dao;
 
 import com.example.hms.dto.LoginDTO;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class LoginDAO {
@@ -23,7 +20,7 @@ public class LoginDAO {
             PreparedStatement statement=connection.prepareStatement(sql1);
 
             statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPasswoord());
+            statement.setString(2, user.getPassword());
             statement.setString(3,user.getRole());
 
             int rowsAffected = statement.executeUpdate();
@@ -37,6 +34,35 @@ public class LoginDAO {
 
         }
         return false;
+    }
+
+    public LoginDTO getUser(String setName ,String setPassword , String setRole  ){
+        String sql="SELECT * FROM student_details WHERE name=? AND password=? AND role=?";
+
+        try{
+            PreparedStatement statement= connection.prepareStatement(sql);
+            statement.setString(1,setName);
+            statement.setString(2,setPassword);
+            statement.setString(3,setRole);
+
+            ResultSet resultSet= statement.executeQuery();
+
+            if(resultSet.next()){
+
+                String srole=resultSet.getString("role");
+                String sname=resultSet.getString("name");
+                String spassword=resultSet.getString("password");
+
+                return new LoginDTO(srole,sname,spassword);
+
+
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }

@@ -56,7 +56,7 @@ public class LoginController {
     private PasswordField confirm_password;
 
     @FXML
-    private ComboBox loginUser;
+    private ComboBox loginUserRole;
 
     @FXML
     private ComboBox registerUser;
@@ -83,11 +83,24 @@ public class LoginController {
         passwordError.setVisible((Password==null || Password.trim().isEmpty())? true: false);
         System.out.println(Password);
 
-        String loginRole=(String) loginUser.getValue();
+        String loginRole=(String) loginUserRole.getValue();
         selectUserError.setVisible((loginRole==null||loginRole.trim().isEmpty()? true:false));
         System.out.println(loginRole);
 
+        try {
+            Connection connection = DBConnection.getConnection();
+            LoginDAO loginDAO = new LoginDAO(connection);
 
+            LoginDTO user=loginDAO.getUser(UserName,Password,loginRole);
+
+            if (user != null) {
+                System.out.println("Login successful");
+            } else {
+                System.out.println("Login failed.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -102,6 +115,7 @@ public class LoginController {
         loginForm.setVisible(false);
         registerForm.setVisible(true);
     }
+
 
 
     //---------------Register Form Methods----------------
@@ -209,6 +223,7 @@ public class LoginController {
             System.out.println("Not saved");
 
         }
+
 
 
     }

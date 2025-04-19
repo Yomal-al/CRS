@@ -3,8 +3,10 @@ package com.example.hms;
 import com.example.hms.controller.DBConnection;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class Application extends javafx.application.Application {
@@ -19,8 +21,8 @@ public class Application extends javafx.application.Application {
 
         stage.setMaxWidth(450);
         stage.setMaxHeight(850);
-        stage.setTitle("Course Registration System");
 
+        stage.setTitle("Course Registration System");
         stage.show();
 
     }

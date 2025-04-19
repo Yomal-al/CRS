@@ -1,13 +1,15 @@
 package com.example.hms.dto;
 
+import com.example.hms.dao.LoginDAO;
+
 public class LoginDTO {
     private String name;
-    private String passwoord;
+    private String password;
     private String role;
 
-    public LoginDTO(String name, String passwoord, String role){
+    public LoginDTO(String name, String password, String role){
         this.name=name;
-        this.passwoord=passwoord;
+        this.password=password;
         this.role=role;
 
     }
@@ -16,14 +18,10 @@ public class LoginDTO {
     //-------getters----------
     public String getUsername() {
         return name;
-
     }
-
-    public String getPasswoord(){
-        return passwoord;
-
+    public String getPassword(){
+        return password;
     }
-
     public String getRole(){
         return role;
     }
@@ -36,13 +34,15 @@ public class LoginDTO {
         this.name = name;
     }
 
-    public void setPasswoord(String passwoord) {
-        this.passwoord = passwoord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setRole(String role) {
         this.role = role;
     }
+
+
 
 
 }

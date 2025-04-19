@@ -17,7 +17,7 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane fx:id="registerForm" prefHeight="750.0" prefWidth="450.0">
+            <AnchorPane fx:id="registerForm" prefHeight="750.0" prefWidth="450.0" style="-fx-background-color: white;" visible="false">
                <children>
                   <TextField fx:id="register_userName" alignment="CENTER" layoutX="100.0" layoutY="179.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" promptText="Username" style="-fx-background-radius: 5; -fx-background-color: D3D3D2;">
                      <font>
@@ -64,7 +64,7 @@
                   <Label fx:id="selectUserErrorRegister" layoutX="167.0" layoutY="492.0" text="*Please Enter a user" textFill="#f80202" visible="false" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="loginForm" layoutX="125.0" layoutY="118.0" prefHeight="750.0" prefWidth="450.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="loginForm" layoutX="125.0" layoutY="118.0" prefHeight="750.0" prefWidth="450.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="113.0" layoutY="127.0" maxWidth="-Infinity" prefHeight="46.0" prefWidth="231.0" text="Login Account">
                      <font>
@@ -102,7 +102,7 @@
                         <Font size="15.0" />
                      </font>
                   </Hyperlink>
-                  <ComboBox fx:id="loginUser" layoutX="119.0" layoutY="497.0" prefHeight="50.0" prefWidth="200.0" promptText="Select User" style="-fx-background-color: CCC6C4; -fx-background-radius: 5;" visibleRowCount="3">
+                  <ComboBox fx:id="loginUserRole" layoutX="119.0" layoutY="497.0" prefHeight="50.0" prefWidth="200.0" promptText="Select User" style="-fx-background-color: CCC6C4; -fx-background-radius: 5;" visibleRowCount="3">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Student" />
