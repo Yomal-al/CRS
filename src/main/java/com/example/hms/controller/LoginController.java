@@ -1,9 +1,13 @@
 package com.example.hms.controller;
 
+import com.example.hms.dao.LoginDAO;
+import com.example.hms.dto.LoginDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+
+import java.sql.Connection;
 
 public class LoginController {
     @FXML
@@ -73,6 +77,8 @@ public class LoginController {
         passwordError.setVisible((Password==null || Password.trim().isEmpty())? true: false);
         System.out.println(Password);
 
+
+
     }
 
     @FXML
@@ -100,7 +106,7 @@ public class LoginController {
     private void registerButtonClick(){
         String newUserPassword=register_password.getText();
         String newUser = register_userName.getText();
-
+        String newRole= (String) registerUser.getValue();
 
         try {
             registerUserNameError.setVisible((newUser==null || newUser.trim().isEmpty() )? true:false);
@@ -109,7 +115,7 @@ public class LoginController {
         } catch (Exception e) {
             System.out.println("UserName Error");
         }
-
+        System.out.println(newRole);
         try{
             passwordsDoNotMatch.setVisible(register_password.getText().equals((confirm_password.getText()))? false:true);
 
@@ -139,6 +145,7 @@ public class LoginController {
                     register_password.setText(newText);
                 }
             });
+
 //            register_password.textProperty().addListener((obs, oldText, newText) -> {
 //                if (showPassword.isSelected()) {
 //                    register_password.setText(newText);
@@ -148,6 +155,29 @@ public class LoginController {
         }catch(Exception e){
             System.out.println("login password error");
         }
+
+        //----------------transfering from view to model--------------
+
+        LoginDTO user= new LoginDTO(newUser ,newUserPassword ,newRole);
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            LoginDAO loginDAO= new LoginDAO(connection);
+
+            boolean saved=loginDAO.saveUser(user);
+
+            if(saved){
+                System.out.println("Saved suucesfully!");
+            }else {
+                System.out.println("Not saved");
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
