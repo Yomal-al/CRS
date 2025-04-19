@@ -2,10 +2,18 @@ package com.example.hms.controller;
 
 import com.example.hms.dao.LoginDAO;
 import com.example.hms.dto.LoginDTO;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import com.example.hms.Application.*;
+
 
 import java.sql.Connection;
 
@@ -30,6 +38,9 @@ public class LoginController {
 
     @FXML
     private Label selectUserError;
+
+    @FXML
+    private Label namePasswordNotFoundError;
 
     @FXML
     private CheckBox showPassword;
@@ -78,28 +89,68 @@ public class LoginController {
         String UserName = login_userName.getText();
         usernameError.setVisible((UserName == null || UserName.trim().isEmpty()) ? true : false);
         System.out.println(UserName);
+        boolean checkName=((UserName == null || UserName.trim().isEmpty()) ? false : true);
 
         String Password=login_password.getText();
         passwordError.setVisible((Password==null || Password.trim().isEmpty())? true: false);
         System.out.println(Password);
+        boolean checkPassword=((Password==null || Password.trim().isEmpty())? false : true);
 
         String loginRole=(String) loginUserRole.getValue();
         selectUserError.setVisible((loginRole==null||loginRole.trim().isEmpty()? true:false));
         System.out.println(loginRole);
+        boolean checkRole=((loginRole==null||loginRole.trim().isEmpty()? false : true));
 
-        try {
-            Connection connection = DBConnection.getConnection();
-            LoginDAO loginDAO = new LoginDAO(connection);
+        if(checkName && checkPassword && checkRole) {
+            try {
+                Connection connection = DBConnection.getConnection();
+                LoginDAO loginDAO = new LoginDAO(connection);
 
-            LoginDTO user=loginDAO.getUser(UserName,Password,loginRole);
+                LoginDTO user = loginDAO.getUser(UserName, Password, loginRole);
 
-            if (user != null) {
-                System.out.println("Login successful");
-            } else {
-                System.out.println("Login failed.");
+                if (user != null) {
+                    Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Course Registration System");
+                    alert.setHeaderText("Successfully Logged In!");
+                    alert.setContentText("Welcome "+UserName);
+
+                    alert.showAndWait();
+
+                    System.out.println("Login successful");
+                    namePasswordNotFoundError.setVisible(false);
+
+
+                    try{
+                        Stage curentStage =(Stage)((Node) event.getSource()).getScene().getWindow();
+                        curentStage.close();
+
+                        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/com/example/hms/view/main.fxml"));
+                        Parent root= fxmlLoader.load();
+
+                        Stage stage=new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.setTitle("Course Registration System");
+                        stage.show();
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+
+                } else {
+                    namePasswordNotFoundError.setVisible(true);
+
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        }else{
+
         }
 
     }
@@ -143,6 +194,8 @@ public class LoginController {
         } catch (Exception e) {
             System.out.println("UserName Error");
         }
+
+
         try{
             passwordsDoNotMatch.setVisible(register_password.getText().equals((confirm_password.getText()))? false:true);
             MPword=(register_password.getText().equals((confirm_password.getText()))? true:false);
@@ -186,10 +239,12 @@ public class LoginController {
             System.out.println("login password error");
         }
 
+
         try{
             selectUserErrorRegister.setVisible(newRole == null || newRole.trim().isEmpty()? true:false );
             Role=(newRole == null || newRole.trim().isEmpty()? false:true );
             System.out.println(newRole+" "+Role);
+
 
         } catch (Exception e) {
             System.out.println("role error");
@@ -211,6 +266,13 @@ public class LoginController {
 
                 if (saved) {
                     System.out.println("Saved suucesfully!");
+                    Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Course Registration System");
+                    alert.setContentText("Successfully Registered!");
+
+                    alert.showAndWait();
+                    switchToLogin();
+
                 } else {
                     System.out.println("Not saved");
                 }

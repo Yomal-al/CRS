@@ -25,10 +25,16 @@ public class Application extends javafx.application.Application {
         stage.setTitle("Course Registration System");
         stage.show();
 
+
+
+
     }
 
     public static void main(String[] args) {
 
         launch();
     }
+
+
+
 }

@@ -114,6 +114,11 @@
                   <Label fx:id="usernameError" layoutX="154.0" layoutY="346.0" text="*Please enter a username" textFill="#f80202" visible="false" />
                   <Label fx:id="passwordError" layoutX="152.0" layoutY="431.0" text="*Please enter a password" textFill="#f80202" visible="false" />
                   <Label fx:id="selectUserError" layoutX="174.0" layoutY="547.0" text="*Please enter a role" textFill="#f80202" visible="false" />
+                  <Label fx:id="namePasswordNotFoundError" layoutX="80.0" layoutY="573.0" text="USERNAME ,PASSWORD OR ROLE IS INCORRECT" textFill="#f80202" visible="false">
+                     <font>
+                        <Font name="Tahoma Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
