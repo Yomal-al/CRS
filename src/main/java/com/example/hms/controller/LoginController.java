@@ -26,6 +26,12 @@ public class LoginController {
     private Label passwordsDoNotMatch;
 
     @FXML
+    private Label selectUserErrorRegister;
+
+    @FXML
+    private Label selectUserError;
+
+    @FXML
     private CheckBox showPassword;
 
     @FXML
@@ -77,6 +83,10 @@ public class LoginController {
         passwordError.setVisible((Password==null || Password.trim().isEmpty())? true: false);
         System.out.println(Password);
 
+        String loginRole=(String) loginUser.getValue();
+        selectUserError.setVisible((loginRole==null||loginRole.trim().isEmpty()? true:false));
+        System.out.println(loginRole);
+
 
 
     }
@@ -108,23 +118,29 @@ public class LoginController {
         String newUser = register_userName.getText();
         String newRole= (String) registerUser.getValue();
 
+        boolean Uname=false,Pword=false,Role=false,MPword=false;
+
         try {
             registerUserNameError.setVisible((newUser==null || newUser.trim().isEmpty() )? true:false);
-            System.out.println(newUser);
+            Uname=((newUser==null || newUser.trim().isEmpty() )? false:true);
+            System.out.println(newUser+" "+Uname);
+
 
         } catch (Exception e) {
             System.out.println("UserName Error");
         }
-        System.out.println(newRole);
         try{
             passwordsDoNotMatch.setVisible(register_password.getText().equals((confirm_password.getText()))? false:true);
-
+            MPword=(register_password.getText().equals((confirm_password.getText()))? true:false);
             try{
                 registerPasswordError.setVisible((newUserPassword==null || newUserPassword.trim().isEmpty() )? true:false);
-                System.out.println(newUserPassword);
+
+                Pword=((newUserPassword==null || newUserPassword.trim().isEmpty() )? false:true);
+                System.out.println(newUserPassword+" "+Pword);
 
                 if(confirm_password.getText()==null || confirm_password.getText().trim().isEmpty()){
                     passwordsDoNotMatch.setVisible(true);
+
                 }else{
 
                     System.out.println(confirm_password.getText());
@@ -156,25 +172,42 @@ public class LoginController {
             System.out.println("login password error");
         }
 
-        //----------------transfering from view to model--------------
-
-        LoginDTO user= new LoginDTO(newUser ,newUserPassword ,newRole);
-
-        try {
-            Connection connection = DBConnection.getConnection();
-            LoginDAO loginDAO= new LoginDAO(connection);
-
-            boolean saved=loginDAO.saveUser(user);
-
-            if(saved){
-                System.out.println("Saved suucesfully!");
-            }else {
-                System.out.println("Not saved");
-            }
-
+        try{
+            selectUserErrorRegister.setVisible(newRole == null || newRole.trim().isEmpty()? true:false );
+            Role=(newRole == null || newRole.trim().isEmpty()? false:true );
+            System.out.println(newRole+" "+Role);
 
         } catch (Exception e) {
+            System.out.println("role error");
             e.printStackTrace();
+        }
+
+        //----------------transfering from view to model--------------
+
+
+
+        if(Uname&&Pword&&Role&&MPword) {
+            LoginDTO user= new LoginDTO(newUser ,newUserPassword ,newRole);
+
+            try {
+                Connection connection = DBConnection.getConnection();
+                LoginDAO loginDAO = new LoginDAO(connection);
+
+                boolean saved = loginDAO.saveUser(user);
+
+                if (saved) {
+                    System.out.println("Saved suucesfully!");
+                } else {
+                    System.out.println("Not saved");
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("Not saved");
+
         }
 
 

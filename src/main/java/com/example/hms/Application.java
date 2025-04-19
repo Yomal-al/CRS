@@ -13,7 +13,7 @@ public class Application extends javafx.application.Application {
 
         DBConnection.initialize();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("loginportal.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/loginportal.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 450, 750);stage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
