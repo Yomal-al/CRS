@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hms.controller.StudentController">
    <children>
       <AnchorPane prefHeight="1000.0" prefWidth="1800.0">
          <children>
@@ -23,8 +24,8 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
                         <CustomMenuItem mnemonicParsing="false" text="Exit" />
+                        <MenuItem fx:id="menuItemHome" mnemonicParsing="false" onAction="#menuItemHomeSelect" text="Home" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -45,7 +46,7 @@
                      <children>
                         <VBox layoutY="-2.0" prefHeight="973.0" prefWidth="262.0">
                            <children>
-                              <Button fx:id="courseDetailsButton" mnemonicParsing="false" prefHeight="133.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="COURSE DETAILS" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#courseDetailsButtonClick" prefHeight="133.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="COURSE DETAILS" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma Bold" size="17.0" />
                                  </font>
@@ -53,7 +54,7 @@
                                     <String fx:value="modern-button" />
                                     <String fx:value="selected-button" />
                                  </styleClass></Button>
-                              <Button fx:id="studentDetailsButton" mnemonicParsing="false" prefHeight="148.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="STUDENT DETAILS" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#studentDetailsButtonClick" prefHeight="148.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="STUDENT DETAILS" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma Bold" size="17.0" />
                                  </font>
@@ -61,7 +62,7 @@
                                     <String fx:value="modern-button" />
                                     <String fx:value="selected-button" />
                                  </styleClass></Button>
-                              <Button fx:id="enrollmentManagementButton" ellipsisString="ad" mnemonicParsing="false" prefHeight="148.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="ENROLLMENT MANAGEMENT" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                              <Button ellipsisString="ad" mnemonicParsing="false" onAction="#enrollmentManagementButtonClick" prefHeight="148.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="ENROLLMENT MANAGEMENT" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -69,7 +70,7 @@
                                     <String fx:value="modern-button" />
                                     <String fx:value="selected-button" />
                                  </styleClass></Button>
-                              <Button fx:id="acedemicRecordButton" mnemonicParsing="false" prefHeight="148.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="ACEDEMIC RECORD" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#acedemicRecordButtonClick" prefHeight="148.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="ACEDEMIC RECORD" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma Bold" size="17.0" />
                                  </font>
@@ -77,7 +78,7 @@
                                     <String fx:value="modern-button" />
                                     <String fx:value="selected-button" />
                                  </styleClass></Button>
-                              <Button fx:id="reportingButton" mnemonicParsing="false" prefHeight="150.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="REPORTING" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#reportingButtonClick" prefHeight="150.0" prefWidth="265.0" style="-fx-background-radius: 0;" stylesheets="@../../../../styles.css" text="REPORTING" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma Bold" size="17.0" />
                                  </font>
@@ -96,11 +97,11 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <AnchorPane fx:id="courseDetailsPane" prefHeight="971.0" prefWidth="1537.0" visible="false">
+                        <AnchorPane id="coursedetails" fx:id="courseDetailsPane" prefHeight="971.0" prefWidth="1537.0" visible="false">
                            <children>
                               <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
                                  <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #475C6C;" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
                                        <children>
                                           <Label layoutX="610.0" layoutY="20.0" text="COURSE DETAILS" textFill="WHITE">
                                              <font>
@@ -113,7 +114,7 @@
                                  </items>
                               </SplitPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="studentDetailsPane" layoutX="-5.0" layoutY="-3.0" prefHeight="984.0" prefWidth="1552.0" visible="false">
+                        <AnchorPane id="studentdetails" fx:id="studentDetailsPane" layoutX="-5.0" layoutY="-3.0" prefHeight="984.0" prefWidth="1552.0" visible="false">
                            <children>
                               <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
                                  <items>
@@ -130,7 +131,7 @@
                                  </items>
                               </SplitPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="enrollmentManagementPane" layoutX="-3.0" layoutY="-2.0" prefHeight="993.0" prefWidth="1560.0" visible="false">
+                        <AnchorPane id="enrollment" fx:id="enrollmentManagementPane" layoutX="-3.0" layoutY="-2.0" prefHeight="993.0" prefWidth="1560.0" visible="false">
                            <children>
                               <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
                                  <items>
@@ -182,7 +183,20 @@
                               </SplitPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="welcomeScreen" prefHeight="984.0" prefWidth="1537.0" />
+                        <AnchorPane fx:id="welcomeScreen" prefHeight="1000.0" prefWidth="1560.0" styleClass="welcome-pane" stylesheets="@../../../../styles.css">
+                           <children>
+                              <Label layoutX="133.0" layoutY="68.0" text="WELCOME TO THE COURSE REGISTRATION SYSTEM" textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="49.0" />
+                                 </font>
+                              </Label>
+                              <TextArea editable="false" layoutX="87.0" layoutY="156.0" prefHeight="745.0" prefWidth="1406.0" styleClass="transparent-textarea" stylesheets="@../../../../styles.css" text="&#10;     This application is designed to streamline and simplify all aspects of academic course and student management. &#10;     Whether you're a student looking to enroll in courses or a faculty member managing academic records, everything you need is right here.&#10;&#10;      Here’s what you can do with this system:&#10;&#10;              Course Details&#10;&#10;       View complete information on all available courses including their ID, title, credit hours, department, prerequisites, and enrollment capacity.&#10;&#10;              Student Profile&#10; &#10;       Access and manage student details such as student ID, name, date of birth, academic program, year of study, and contact information.&#10;&#10;              Enrollment Management&#10;&#10;       Register for courses easily while the system ensures prerequisites are met and course capacity isn't exceeded.  &#10;        Add or drop courses during the official enrollment period each semester.&#10;&#10;              Academic Records&#10;&#10;       Track your academic journey with a detailed record of all enrolled courses and grades received across semesters.&#10;&#10;              Reporting Tools &#10;&#10;       Generate insightful reports on course enrollments, vacancies, and personalized student schedules.  &#10;       Faculty can access academic progress reports to assist with student advising.&#10;&#10;&#10;&#10;&#10;&#10;           Let’s get started and make your academic planning simple and efficient!&#10;">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </AnchorPane>
                      </children></AnchorPane>
               </items>
             </SplitPane>

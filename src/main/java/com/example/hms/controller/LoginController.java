@@ -2,7 +2,6 @@ package com.example.hms.controller;
 
 import com.example.hms.dao.LoginDAO;
 import com.example.hms.dto.LoginDTO;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import com.example.hms.Application.*;
 
 
 import java.sql.Connection;
@@ -85,7 +83,7 @@ public class LoginController {
     //---------------Login Form Methods---------------
 
     @FXML
-    private void loginButtonClick(ActionEvent event) {
+    private String loginButtonClick(ActionEvent event) {
         String UserName = login_userName.getText();
         usernameError.setVisible((UserName == null || UserName.trim().isEmpty()) ? true : false);
         System.out.println(UserName);
@@ -124,13 +122,14 @@ public class LoginController {
                         Stage curentStage =(Stage)((Node) event.getSource()).getScene().getWindow();
                         curentStage.close();
 
-                        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/com/example/hms/view/main.fxml"));
+                        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/com/example/hms/view/student.fxml"));
                         Parent root= fxmlLoader.load();
 
                         Stage stage=new Stage();
                         stage.setScene(new Scene(root));
                         stage.setTitle("Course Registration System");
                         stage.show();
+
 
 
                     } catch (Exception e) {
@@ -152,6 +151,7 @@ public class LoginController {
         }else{
 
         }
+        return loginRole;
 
     }
 
@@ -229,12 +229,6 @@ public class LoginController {
                 }
             });
 
-//            register_password.textProperty().addListener((obs, oldText, newText) -> {
-//                if (showPassword.isSelected()) {
-//                    register_password.setText(newText);
-//                }
-//            });
-
         }catch(Exception e){
             System.out.println("login password error");
         }
@@ -264,7 +258,7 @@ public class LoginController {
 
                 boolean saved = loginDAO.saveUser(user);
 
-                if (saved) {
+                if (saved && loginRole.equalsIgnoreCase("Student")) {
                     System.out.println("Saved suucesfully!");
                     Alert alert=new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Course Registration System");
