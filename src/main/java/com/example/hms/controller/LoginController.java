@@ -99,7 +99,7 @@ public class LoginController {
         System.out.println(loginRole);
         boolean checkRole=((loginRole==null||loginRole.trim().isEmpty()? false : true));
 
-        if(checkName && checkPassword && checkRole) {
+        if (checkName && checkPassword && checkRole) {
             try {
                 Connection connection = DBConnection.getConnection();
                 LoginDAO loginDAO = new LoginDAO(connection);
@@ -107,10 +107,10 @@ public class LoginController {
                 LoginDTO user = loginDAO.getUser(UserName, Password, loginRole);
 
                 if (user != null) {
-                    Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Course Registration System");
                     alert.setHeaderText("Successfully Logged In!");
-                    alert.setContentText("Welcome "+UserName);
+                    alert.setContentText("Welcome " + UserName);
 
                     alert.showAndWait();
 
@@ -118,26 +118,36 @@ public class LoginController {
                     namePasswordNotFoundError.setVisible(false);
 
 
-                    try{
-                        Stage curentStage =(Stage)((Node) event.getSource()).getScene().getWindow();
+                    try {
+                        Stage curentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         curentStage.close();
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/student.fxml"));
 
-                        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/com/example/hms/view/student.fxml"));
-                        Parent root= fxmlLoader.load();
+                        if (loginRole.equals("Student")) {
 
-                        Stage stage=new Stage();
+                            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/student.fxml"));
+
+                        } else if (loginRole.equals("Admin")) {
+
+                            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/admin.fxml"));
+
+                        } else if (loginRole.equals("Administrative Staff")) {
+
+                            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/staff.fxml"));
+
+                        } else {
+                        }
+
+                        Parent root = fxmlLoader.load();
+                        Stage stage = new Stage();
                         stage.setScene(new Scene(root));
                         stage.setTitle("Course Registration System");
                         stage.show();
 
 
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-
-
 
 
                 } else {
@@ -148,7 +158,7 @@ public class LoginController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
 
         }
         return loginRole;
@@ -178,10 +188,11 @@ public class LoginController {
     }
 
     @FXML
-    private void registerButtonClick(){
+    private void registerButtonClick(ActionEvent event){
         String newUserPassword=register_password.getText();
         String newUser = register_userName.getText();
         String newRole= (String) registerUser.getValue();
+        String loginRole =loginButtonClick(event);
 
         boolean Uname=false,Pword=false,Role=false,MPword=false;
 
@@ -257,8 +268,8 @@ public class LoginController {
                 LoginDAO loginDAO = new LoginDAO(connection);
 
                 boolean saved = loginDAO.saveUser(user);
-
-                if (saved && loginRole.equalsIgnoreCase("Student")) {
+                System.out.println(loginRole);
+                if (saved ) {
                     System.out.println("Saved suucesfully!");
                     Alert alert=new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Course Registration System");

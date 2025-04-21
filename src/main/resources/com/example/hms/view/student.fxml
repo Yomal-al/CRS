@@ -8,10 +8,13 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -97,26 +100,50 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <AnchorPane id="coursedetails" fx:id="courseDetailsPane" prefHeight="971.0" prefWidth="1537.0" visible="false">
+                        <StackPane prefHeight="971.0" prefWidth="1530.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
-                                 <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #475C6C;" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
+                              <VBox prefHeight="955.0" prefWidth="1532.0">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="92.0" prefWidth="1532.0" style="-fx-background-color: #475C6C;" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
                                        <children>
-                                          <Label layoutX="610.0" layoutY="20.0" text="COURSE DETAILS" textFill="WHITE">
+                                          <Label layoutX="610.0" layoutY="20.0" text="COURSE DETAILS" textFill="WHITE" wrapText="true">
                                              <font>
                                                 <Font name="Tahoma Bold" size="40.0" />
                                              </font>
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1542.0" />
-                                 </items>
-                              </SplitPane>
-                           </children></AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="100.0" prefWidth="1542.0">
+                                       <children>
+                                          <BorderPane prefHeight="876.0" prefWidth="771.0">
+                                             <top>
+                                                <Label mouseTransparent="true" prefHeight="56.0" prefWidth="269.0" text="COURSES REGISTERED" textAlignment="CENTER" textFill="#d0c9c9" wrapText="true" BorderPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="Tahoma" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </top>
+                                             <center>
+                                                <TableView fx:id="tableview" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                                  <columns>
+                                                    <TableColumn fx:id="courseId" prefWidth="131.0" text="Course Id" />
+                                                    <TableColumn fx:id="courseName" prefWidth="241.0" text="Course Name" />
+                                                      <TableColumn fx:id="courseCredits" minWidth="7.0" prefWidth="133.0" text="Course credits" />
+                                                      <TableColumn fx:id="courseHours" prefWidth="123.0" text="Course Hours" />
+                                                      <TableColumn fx:id="maxParticipants" prefWidth="142.0" text="Max Participants" />
+                                                  </columns>
+                                                </TableView>
+                                             </center>
+                                          </BorderPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
                         <AnchorPane id="studentdetails" fx:id="studentDetailsPane" layoutX="-5.0" layoutY="-3.0" prefHeight="984.0" prefWidth="1552.0" visible="false">
                            <children>
-                              <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
+                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
                                  <items>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #475C6C;">
                                        <children>
@@ -183,7 +210,7 @@
                               </SplitPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="welcomeScreen" prefHeight="1000.0" prefWidth="1560.0" styleClass="welcome-pane" stylesheets="@../../../../styles.css">
+                        <AnchorPane fx:id="welcomeScreen" prefHeight="1000.0" prefWidth="1560.0" styleClass="welcome-pane" stylesheets="@../../../../styles.css" visible="false">
                            <children>
                               <Label layoutX="133.0" layoutY="68.0" text="WELCOME TO THE COURSE REGISTRATION SYSTEM" textFill="WHITE">
                                  <font>

@@ -19,6 +19,8 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 450, 750);stage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
+        stage.setResizable(false);
+
         stage.setMaxWidth(450);
         stage.setMaxHeight(850);
 
