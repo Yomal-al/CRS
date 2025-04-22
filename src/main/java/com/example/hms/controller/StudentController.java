@@ -2,19 +2,30 @@ package com.example.hms.controller;
 
 import java.awt.*;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
+import com.example.hms.dto.CourseDTO;
 import com.example.hms.dto.StudentDTO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.StackPane;
 
-import javax.swing.table.TableColumn;
+import javafx.scene.control.TableColumn;
 
 
 public class StudentController {
+
 
         @FXML
         private ResourceBundle resources;
@@ -25,25 +36,22 @@ public class StudentController {
         @FXML
         private MenuItem menuItemHome;
 
-        @FXML
-        private TableView tableView;
-
         //--------Panes---------------
 
         @FXML
-        private AnchorPane acedemicRecordPane;
+        private StackPane acedemicRecordPane;
 
         @FXML
-        private AnchorPane courseDetailsPane;
+        private StackPane courseDetailsPane;
 
         @FXML
-        private AnchorPane enrollmentManagementPane;
+        private StackPane enrollmentManagementPane;
 
         @FXML
-        private AnchorPane reportingPane;
+        private StackPane reportingPane;
 
         @FXML
-        private AnchorPane studentDetailsPane;
+        private StackPane studentDetailsPane;
 
         @FXML
         private AnchorPane welcomeScreen;
@@ -55,18 +63,23 @@ public class StudentController {
     private TableView<StudentDTO> tableview;
 
     @FXML
-    private TableColumn<StudentDTO,Boolean > courseCredits;
+    private TableColumn courseCredits;
 
     @FXML
-    private TableColumn<StudentDTO, > courseHours;
+    private TableColumn courseHours;
 
     @FXML
-    private TableColumn<?, ?> courseId;
+    private TableColumn courseId;
 
     @FXML
-    private TableColumn<?, ?> courseName;
+    private TableColumn courseName;
+
+    @FXML
+    private TableColumn maxParticipants;
+
 
     //-----------ButtonMethods------------
+
     @FXML
     private void acedemicRecordButtonClick(ActionEvent event) {
 
@@ -102,6 +115,23 @@ public class StudentController {
         reportingPane.setVisible(false);
         acedemicRecordPane.setVisible(false);
 
+        ObservableList<CourseDTO> list= FXCollections.observableArrayList();
+
+        try{
+            Connection connection =DBConnection.getConnection();
+            Statement statement=connection.createStatement();
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM course_details");
+
+            while(resultSet.next()){
+                    list.add(new CourseDTO(
+                            resultSet.getString()
+                    ))
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -125,6 +155,7 @@ public class StudentController {
         reportingPane.setVisible(false);
         acedemicRecordPane.setVisible(false);
     }
+
 
     //------------MenuButton----------------
 

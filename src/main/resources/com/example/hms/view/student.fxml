@@ -100,7 +100,21 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <StackPane prefHeight="971.0" prefWidth="1530.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="welcomeScreen" prefHeight="971.0" prefWidth="1530.0" styleClass="welcome-pane" stylesheets="@../../../../styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="133.0" layoutY="68.0" text="WELCOME TO THE COURSE REGISTRATION SYSTEM" textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="49.0" />
+                                 </font>
+                              </Label>
+                              <TextArea editable="false" layoutX="87.0" layoutY="156.0" prefHeight="745.0" prefWidth="1406.0" styleClass="transparent-textarea" stylesheets="@../../../../styles.css" text="&#10;     This application is designed to streamline and simplify all aspects of academic course and student management. &#10;     Whether you're a student looking to enroll in courses or a faculty member managing academic records, everything you need is right here.&#10;&#10;      Here’s what you can do with this system:&#10;&#10;              Course Details&#10;&#10;       View complete information on all available courses including their ID, title, credit hours, department, prerequisites, and enrollment capacity.&#10;&#10;              Student Profile&#10; &#10;       Access and manage student details such as student ID, name, date of birth, academic program, year of study, and contact information.&#10;&#10;              Enrollment Management&#10;&#10;       Register for courses easily while the system ensures prerequisites are met and course capacity isn't exceeded.  &#10;        Add or drop courses during the official enrollment period each semester.&#10;&#10;              Academic Records&#10;&#10;       Track your academic journey with a detailed record of all enrolled courses and grades received across semesters.&#10;&#10;              Reporting Tools &#10;&#10;       Generate insightful reports on course enrollments, vacancies, and personalized student schedules.  &#10;       Faculty can access academic progress reports to assist with student advising.&#10;&#10;&#10;&#10;&#10;&#10;           Let’s get started and make your academic planning simple and efficient!&#10;">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </AnchorPane>
+                        <StackPane fx:id="courseDetailsPane" prefHeight="971.0" prefWidth="1530.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <VBox prefHeight="955.0" prefWidth="1532.0">
                                  <children>
@@ -141,89 +155,78 @@
                               </VBox>
                            </children>
                         </StackPane>
-                        <AnchorPane id="studentdetails" fx:id="studentDetailsPane" layoutX="-5.0" layoutY="-3.0" prefHeight="984.0" prefWidth="1552.0" visible="false">
+                        <StackPane fx:id="studentDetailsPane" layoutY="-10.0" prefHeight="971.0" prefWidth="1530.0" visible="false">
                            <children>
-                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
-                                 <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #475C6C;">
+                              <VBox prefHeight="981.0" prefWidth="1530.0">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="98.0" prefWidth="1530.0" style="-fx-background-color: #475C6C;" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
                                        <children>
-                                          <Label layoutX="596.0" layoutY="21.0" text="STUDENT DETAILS" textFill="WHITE">
+                                          <Label layoutX="610.0" layoutY="20.0" text="STUDENT DETAILS" textFill="WHITE" wrapText="true">
                                              <font>
                                                 <Font name="Tahoma Bold" size="40.0" />
                                              </font>
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1542.0" />
-                                 </items>
-                              </SplitPane>
-                           </children></AnchorPane>
-                        <AnchorPane id="enrollment" fx:id="enrollmentManagementPane" layoutX="-3.0" layoutY="-2.0" prefHeight="993.0" prefWidth="1560.0" visible="false">
-                           <children>
-                              <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
-                                 <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #475C6C;">
-                                       <children>
-                                          <Label layoutX="529.0" layoutY="23.0" text="ENROLLMENT MANAGEMENT" textFill="WHITE">
-                                             <font>
-                                                <Font name="Tahoma Bold" size="40.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1542.0" />
-                                 </items>
-                              </SplitPane>
-                           </children></AnchorPane>
-                        <AnchorPane fx:id="acedemicRecordPane" layoutX="-5.0" layoutY="-3.0" prefHeight="984.0" prefWidth="1552.0" visible="false">
-                           <children>
-                              <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
-                                 <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #475C6C;">
-                                       <children>
-                                          <Label layoutX="611.0" layoutY="15.0" text="ACEDEMIC RECORD" textFill="WHITE">
-                                             <font>
-                                                <Font name="Tahoma Bold" size="40.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1542.0" />
-                                 </items>
-                              </SplitPane>
-                           </children></AnchorPane>
-                        <AnchorPane fx:id="reportingPane" layoutX="-3.0" layoutY="-2.0" prefHeight="993.0" prefWidth="1560.0" visible="false">
-                           <children>
-                              <SplitPane dividerPositions="0.09700722394220847" orientation="VERTICAL" prefHeight="971.0" prefWidth="1544.0">
-                                <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #475C6C;">
-                                       <children>
-                                          <Label layoutX="650.0" layoutY="17.0" text="REPORTING" textFill="WHITE">
-                                             <font>
-                                                <Font name="Tahoma Bold" size="40.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1542.0" />
-                                </items>
-                              </SplitPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="100.0" prefWidth="1542.0" />
+                                 </children>
+                              </VBox>
                            </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="welcomeScreen" prefHeight="1000.0" prefWidth="1560.0" styleClass="welcome-pane" stylesheets="@../../../../styles.css" visible="false">
+                        </StackPane>
+                        <StackPane fx:id="enrollmentManagementPane" layoutX="10.0" layoutY="10.0" prefHeight="971.0" prefWidth="1530.0" visible="false">
                            <children>
-                              <Label layoutX="133.0" layoutY="68.0" text="WELCOME TO THE COURSE REGISTRATION SYSTEM" textFill="WHITE">
-                                 <font>
-                                    <Font name="Tahoma Bold" size="49.0" />
-                                 </font>
-                              </Label>
-                              <TextArea editable="false" layoutX="87.0" layoutY="156.0" prefHeight="745.0" prefWidth="1406.0" styleClass="transparent-textarea" stylesheets="@../../../../styles.css" text="&#10;     This application is designed to streamline and simplify all aspects of academic course and student management. &#10;     Whether you're a student looking to enroll in courses or a faculty member managing academic records, everything you need is right here.&#10;&#10;      Here’s what you can do with this system:&#10;&#10;              Course Details&#10;&#10;       View complete information on all available courses including their ID, title, credit hours, department, prerequisites, and enrollment capacity.&#10;&#10;              Student Profile&#10; &#10;       Access and manage student details such as student ID, name, date of birth, academic program, year of study, and contact information.&#10;&#10;              Enrollment Management&#10;&#10;       Register for courses easily while the system ensures prerequisites are met and course capacity isn't exceeded.  &#10;        Add or drop courses during the official enrollment period each semester.&#10;&#10;              Academic Records&#10;&#10;       Track your academic journey with a detailed record of all enrolled courses and grades received across semesters.&#10;&#10;              Reporting Tools &#10;&#10;       Generate insightful reports on course enrollments, vacancies, and personalized student schedules.  &#10;       Faculty can access academic progress reports to assist with student advising.&#10;&#10;&#10;&#10;&#10;&#10;           Let’s get started and make your academic planning simple and efficient!&#10;">
-                                 <font>
-                                    <Font size="21.0" />
-                                 </font>
-                              </TextArea>
+                              <VBox prefHeight="955.0" prefWidth="1532.0">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="92.0" prefWidth="1532.0" style="-fx-background-color: #475C6C;" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
+                                       <children>
+                                          <Label layoutX="610.0" layoutY="20.0" text="ENROLLMENT MANAGEMENT" textFill="WHITE" wrapText="true">
+                                             <font>
+                                                <Font name="Tahoma Bold" size="40.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="100.0" prefWidth="1542.0" />
+                                 </children>
+                              </VBox>
                            </children>
-                        </AnchorPane>
+                        </StackPane>
+                        <StackPane fx:id="acedemicRecordPane" layoutX="10.0" layoutY="10.0" prefHeight="971.0" prefWidth="1530.0" visible="false">
+                           <children>
+                              <VBox prefHeight="955.0" prefWidth="1532.0">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="92.0" prefWidth="1532.0" style="-fx-background-color: #475C6C;" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
+                                       <children>
+                                          <Label layoutX="610.0" layoutY="20.0" text="ACEDEMIC RECORD" textFill="WHITE" wrapText="true">
+                                             <font>
+                                                <Font name="Tahoma Bold" size="40.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="100.0" prefWidth="1542.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="reportingPane" layoutX="10.0" layoutY="10.0" prefHeight="971.0" prefWidth="1530.0" visible="false">
+                           <children>
+                              <VBox prefHeight="955.0" prefWidth="1532.0">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="92.0" prefWidth="1532.0" style="-fx-background-color: #475C6C;" styleClass="modern-header-pane" stylesheets="@../../../../styles.css">
+                                       <children>
+                                          <Label layoutX="610.0" layoutY="20.0" text="REPORTING" textFill="WHITE" wrapText="true">
+                                             <font>
+                                                <Font name="Tahoma Bold" size="40.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" mouseTransparent="true" prefHeight="100.0" prefWidth="1542.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
                      </children></AnchorPane>
               </items>
             </SplitPane>
