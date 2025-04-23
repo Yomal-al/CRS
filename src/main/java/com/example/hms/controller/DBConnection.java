@@ -28,7 +28,7 @@ public class DBConnection {
                         "password VARCHAR(255), " +
                         "role VARCHAR(50))";
 
-                String course_table = "CREATE TABLE IF NOT EXISTS course_details(course_id VARCHAR(50) PRIMARY KEY , course_name VARCHAR(50) ,course_credits INT ,course_hours INT)";
+                String course_table = "CREATE TABLE IF NOT EXISTS course_details(course_id VARCHAR(50) PRIMARY KEY , course_name VARCHAR(50) ,course_credits INT ,course_hours INT,max_participants INT)";
                 String student_acedemicTable= "CREATE TABLE IF NOT EXISTS student_acedemicDetails(student_id INT,courses_involved VARCHAR(50),course_credits DOUBLE , gpa DOUBLE , FOREIGN KEY (student_id) REFERENCES student_details(student_id))";
 
 

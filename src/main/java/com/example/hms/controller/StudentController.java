@@ -1,5 +1,6 @@
 package com.example.hms.controller;
 
+import com.example.hms.dao.CourseDAO;
 import java.awt.*;
 import java.net.URL;
 import java.sql.Connection;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
@@ -56,6 +58,7 @@ public class StudentController {
         @FXML
         private AnchorPane welcomeScreen;
 
+
     //------------Table---------------
 
 
@@ -79,6 +82,15 @@ public class StudentController {
 
 
     //-----------ButtonMethods------------
+
+    public void setValueCourse(){
+        courseCredits.setCellValueFactory(new PropertyValueFactory<>("courseCredits"));
+        courseId.setCellValueFactory(new PropertyValueFactory<>("courseId") );
+        courseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        courseHours.setCellValueFactory(new PropertyValueFactory<>("courseHours"));
+        maxParticipants.setCellValueFactory(new PropertyValueFactory<>("maxParticipants"));
+
+    }
 
     @FXML
     private void acedemicRecordButtonClick(ActionEvent event) {
@@ -115,22 +127,22 @@ public class StudentController {
         reportingPane.setVisible(false);
         acedemicRecordPane.setVisible(false);
 
-        ObservableList<CourseDTO> list= FXCollections.observableArrayList();
+        courseId.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        courseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        courseCredits.setCellValueFactory(new PropertyValueFactory<>("courseCredits"));
+        courseHours.setCellValueFactory(new PropertyValueFactory<>("courseHours"));
+        maxParticipants.setCellValueFactory(new PropertyValueFactory<>("maxParticipants"));
 
-        try{
-            Connection connection =DBConnection.getConnection();
-            Statement statement=connection.createStatement();
-            ResultSet resultSet=statement.executeQuery("SELECT * FROM course_details");
 
-            while(resultSet.next()){
-                    list.add(new CourseDTO(
-                            resultSet.getString()
-                    ))
-            }
+        CourseDAO courseDAO=new CourseDAO();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+        ObservableList<CourseDTO> data = courseDAO.insertTableView();
+        tableview.setItems(data);
+
+         courseDAO.insertTableView();
+
+
 
     }
 
