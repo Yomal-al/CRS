@@ -24,6 +24,10 @@ public class CourseDTO {
 
     }
 
+    public CourseDTO(String courseName) {
+    }
+
+
     public String getCourseId() {
         return courseId.get();
     }

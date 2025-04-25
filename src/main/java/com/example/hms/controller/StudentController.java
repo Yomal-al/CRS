@@ -11,24 +11,21 @@ import java.util.Collection;
 import java.util.ResourceBundle;
 
 import com.example.hms.dto.CourseDTO;
-import com.example.hms.dto.StudentDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
-
-import javafx.scene.control.TableColumn;
 
 
 public class StudentController {
 
-
+        @FXML
+        private ComboBox comboname;
         @FXML
         private ResourceBundle resources;
 
@@ -63,7 +60,7 @@ public class StudentController {
 
 
     @FXML
-    private TableView<StudentDTO> tableview;
+    private TableView<CourseDTO> tableview;
 
     @FXML
     private TableColumn courseCredits;
@@ -135,12 +132,14 @@ public class StudentController {
 
 
         CourseDAO courseDAO=new CourseDAO();
-
+        comboName
 
         ObservableList<CourseDTO> data = courseDAO.insertTableView();
         tableview.setItems(data);
 
          courseDAO.insertTableView();
+
+        ObservableList<CourseDTO> comboName = courseDAO.insertTableView();
 
 
 

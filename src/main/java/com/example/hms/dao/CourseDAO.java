@@ -12,15 +12,40 @@ import java.sql.Statement;
 
 public class CourseDAO {
 
+    public ObservableList<CourseDTO> comboName() {
+        ObservableList<CourseDTO> comboName = FXCollections.observableArrayList();
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet comboname=statement.executeQuery("SELECT course_name FROM course_details");
+
+
+            while (comboname.next()){
+                comboName.add(new CourseDTO(
+                        comboname.getString("course_name")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return comboName;
+    }
 
 
     public ObservableList<CourseDTO> insertTableView() {
         ObservableList<CourseDTO> list= FXCollections.observableArrayList();
 
+
         try {
             Connection connection = DBConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM course_details");
+
+
 
             while (resultSet.next()) {
                 list.add(new CourseDTO(
