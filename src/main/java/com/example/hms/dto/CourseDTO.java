@@ -3,6 +3,7 @@ package com.example.hms.dto;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class CourseDTO {
 
@@ -20,12 +21,11 @@ public class CourseDTO {
         this.courseHours=new SimpleIntegerProperty(courseHours);
         this.maxParticipants=new SimpleIntegerProperty(maxParticipants);
 
-
-
     }
 
-    public CourseDTO(String courseName) {
-    }
+//    public CourseDTO(String courseName) {
+//        this.courseName = new SimpleStringProperty(courseName);
+//    }
 
 
     public String getCourseId() {
@@ -47,6 +47,21 @@ public class CourseDTO {
     public int getMaxParticipants() {
         return maxParticipants.get();
     }
+
+    public CourseDTO(SimpleStringProperty courseId, String courseName, SimpleDoubleProperty courseCredits, SimpleIntegerProperty courseHours, SimpleIntegerProperty maxParticipants) {
+        this.courseId = courseId;
+        this.courseName = new SimpleStringProperty(courseName);
+        this.courseCredits = courseCredits;
+        this.courseHours = courseHours;
+        this.maxParticipants = maxParticipants;
+    }
+
+
+
+    public StringProperty courseNameProperty() {
+        return courseName;
+    }
+
 
 }
 

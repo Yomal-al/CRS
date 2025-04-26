@@ -13,20 +13,17 @@ public class LoginDAO {
 
     }
 
-    public boolean saveUser(LoginDTO user) {
-        String sql1 = "INSERT INTO student_details(name ,password , role) VALUES (?,?,?)";
+    public boolean saveUserStudent(LoginDTO user) {
+        String sql1 = "INSERT INTO student_details(name ,password ) VALUES (?,?)";
 
-        try{
-            PreparedStatement statement=connection.prepareStatement(sql1);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql1);
 
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
-            statement.setString(3,user.getRole());
 
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
-
-
 
 
         } catch (Exception e) {
@@ -36,31 +33,84 @@ public class LoginDAO {
         return false;
     }
 
-    public LoginDTO getUser(String setName ,String setPassword , String setRole  ){
-        String sql="SELECT * FROM student_details WHERE name=? AND password=? AND role=?";
+    public boolean saveUserAdmin(LoginDTO user) {
+        String sql1 = "INSERT INTO admin_details(name ,password ) VALUES (?,?)";
 
-        try{
-            PreparedStatement statement= connection.prepareStatement(sql);
-            statement.setString(1,setName);
-            statement.setString(2,setPassword);
-            statement.setString(3,setRole);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql1);
 
-            ResultSet resultSet= statement.executeQuery();
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
 
-            if(resultSet.next()){
-
-                String srole=resultSet.getString("role");
-                String sname=resultSet.getString("name");
-                String spassword=resultSet.getString("password");
-
-                return new LoginDTO(srole,sname,spassword);
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return false;
+    }
+
+    public boolean saveUserStaff(LoginDTO user) {
+        String sql1 = "INSERT INTO staff_details(name ,password ) VALUES (?,?)";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql1);
+
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return false;
+    }
+
+
+    public LoginDTO getUser(String setName, String setPassword, String setRole) {
+
+
+            String sql = "";
+
+            switch (setRole) {
+                case "Student":
+                    sql = "SELECT * FROM student_details WHERE name=? AND password=?";
+                    break;
+                case "Admin":
+                    sql = "SELECT * FROM admin_details WHERE name=? AND password=?";
+                    break;
+                case "Administrative Staff":
+                    sql = "SELECT * FROM staff_details WHERE name=? AND password=?";
+                    break;
+                default:
+                    return null;
             }
 
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, setName);
+                statement.setString(2, setPassword);
+
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    String name = resultSet.getString("name");
+                    String password = resultSet.getString("password");
+
+                    return new LoginDTO(name, password);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
 
         return null;
     }

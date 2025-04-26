@@ -206,7 +206,6 @@ public class LoginController {
             System.out.println("UserName Error");
         }
 
-
         try{
             passwordsDoNotMatch.setVisible(register_password.getText().equals((confirm_password.getText()))? false:true);
             MPword=(register_password.getText().equals((confirm_password.getText()))? true:false);
@@ -227,7 +226,6 @@ public class LoginController {
             } catch (Exception e) {
                 System.out.println("Password fetch error");
             }
-
 
         }catch(Exception e) {
             System.out.println("Password invalid");
@@ -250,7 +248,6 @@ public class LoginController {
             Role=(newRole == null || newRole.trim().isEmpty()? false:true );
             System.out.println(newRole+" "+Role);
 
-
         } catch (Exception e) {
             System.out.println("role error");
             e.printStackTrace();
@@ -258,19 +255,31 @@ public class LoginController {
 
         //----------------transfering from view to model--------------
 
-
-
         if(Uname&&Pword&&Role&&MPword) {
+
             LoginDTO user= new LoginDTO(newUser ,newUserPassword ,newRole);
 
             try {
                 Connection connection = DBConnection.getConnection();
                 LoginDAO loginDAO = new LoginDAO(connection);
+                boolean saved=false;
 
-                boolean saved = loginDAO.saveUser(user);
+                switch(newRole){
+                    case "Student":
+                        saved=loginDAO.saveUserStudent(user);
+                        break;
+                    case "Admin":
+                       saved= loginDAO.saveUserAdmin(user);
+                        break;
+                    case "Administrative Staff":
+                        saved = loginDAO.saveUserStaff(user);
+                        break;
+                }
+
                 System.out.println(loginRole);
-                if (saved ) {
-                    System.out.println("Saved suucesfully!");
+
+                if (saved) {
+                    System.out.println("Saved sucesfully!");
                     Alert alert=new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Course Registration System");
                     alert.setContentText("Successfully Registered!");
@@ -282,14 +291,13 @@ public class LoginController {
                     System.out.println("Not saved");
                 }
 
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }else{
             System.out.println("Not saved");
-
         }
+
 
 
 

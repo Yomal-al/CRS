@@ -1,13 +1,7 @@
 package com.example.hms.controller;
 
 import com.example.hms.dao.CourseDAO;
-import java.awt.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 import com.example.hms.dto.CourseDTO;
@@ -22,38 +16,51 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 
-public class StudentController {
+public class StudentController{
 
-        @FXML
-        private ComboBox comboname;
-        @FXML
-        private ResourceBundle resources;
+    @FXML
+    private ComboBox<String> comboname;
 
-        @FXML
-        private URL location;
+    @FXML
+    private ResourceBundle resources;
 
-        @FXML
-        private MenuItem menuItemHome;
+    @FXML
+    private URL location;
 
-        //--------Panes---------------
+    @FXML
+    private MenuItem menuItemHome;
 
-        @FXML
-        private StackPane acedemicRecordPane;
+    @FXML
+    private TextArea studentDetailsCourses;
 
-        @FXML
-        private StackPane courseDetailsPane;
+    @FXML
+    private TextField studentDetailsGPA;
 
-        @FXML
-        private StackPane enrollmentManagementPane;
+    @FXML
+    private TextField studentDetailsID;
 
-        @FXML
-        private StackPane reportingPane;
+    @FXML
+    private TextField studentDetailsName;
 
-        @FXML
-        private StackPane studentDetailsPane;
+    //-------------Panes---------------
 
-        @FXML
-        private AnchorPane welcomeScreen;
+    @FXML
+    private StackPane acedemicRecordPane;
+
+    @FXML
+    private StackPane courseDetailsPane;
+
+    @FXML
+    private StackPane enrollmentManagementPane;
+
+    @FXML
+    private StackPane reportingPane;
+
+    @FXML
+    private StackPane studentDetailsPane;
+
+    @FXML
+    private AnchorPane welcomeScreen;
 
 
     //------------Table---------------
@@ -100,7 +107,6 @@ public class StudentController {
         reportingPane.setVisible(false);
 
 
-
     }
 
     @FXML
@@ -131,16 +137,20 @@ public class StudentController {
         maxParticipants.setCellValueFactory(new PropertyValueFactory<>("maxParticipants"));
 
 
-        CourseDAO courseDAO=new CourseDAO();
-        comboName
+        CourseDAO courseDAO = new CourseDAO();
 
         ObservableList<CourseDTO> data = courseDAO.insertTableView();
         tableview.setItems(data);
+        courseDAO.insertTableView();
 
-         courseDAO.insertTableView();
+        ObservableList<CourseDTO> courseList = courseDAO.insertTableView();
+        ObservableList<String> courseNames = FXCollections.observableArrayList();
 
-        ObservableList<CourseDTO> comboName = courseDAO.insertTableView();
+        for (CourseDTO course : courseList) {
+            courseNames.add(course.getCourseName());
+        }
 
+        comboname.setItems(courseNames);
 
 
     }
