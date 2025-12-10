@@ -95,13 +95,13 @@ The application automatically initializes the following MySQL tables upon startu
 
 ## 📸 Screenshots
 
-| Login Portal | Student Dashboard |
-|:---:|:---:|
-| *(Add screenshot of login.fxml)* | *(Add screenshot of student.fxml)* |
+|                          Login Portal                          | Student Dashboard |
+|:--------------------------------------------------------------:|:-----------------:|
+| ![loginportal](src/main/resources/portalviews/loginportal.png) |       ![](src/main/resources/portalviews/studentportal.png)       |
 
-| Staff Dashboard | Course Management |
-|:---:|:---:|
-| *(Add screenshot of dashboard tab)* | *(Add screenshot of add course tab)* |
+|                    Staff Dashboard                     | Course Management |
+|:------------------------------------------------------:|:-----------------:|
+| ![](src/main/resources/portalviews/staffdashboard.png) |       ![](src/main/resources/portalviews/staffportal.png)       |
 
 ## 🤝 Contributing
 
