@@ -143,3 +143,29 @@
     -fx-border-width: 0;
     -fx-padding: 20 0 0 0;
 }
+
+/* --- SIDEBAR TOGGLE BUTTONS (For Sub-Navigation) --- */
+.sidebar-toggle {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 50; /* Pill Shape */
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
+    -fx-pref-width: 200; /* Fixed width for sidebar buttons */
+}
+
+.sidebar-toggle:hover {
+    -fx-background-color: #f0f0f0;
+    -fx-translate-x: 2; /* Slide right animation */
+}
+
+.sidebar-toggle:selected {
+    -fx-background-color: #1a1a1a; /* Active Black */
+    -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 3);
+}

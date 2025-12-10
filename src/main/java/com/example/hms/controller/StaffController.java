@@ -2,10 +2,14 @@ package com.example.hms.controller;
 
 import com.example.hms.dao.SaveCourseDAO;
 import com.example.hms.dto.CourseDTO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -15,22 +19,22 @@ import java.time.format.DateTimeFormatter;
 public class StaffController {
 
     @FXML
-    private TextField txtCourseId;
+    private TextField txtAddCourseId;
 
     @FXML
-    private TextField txtCourseName;
+    private TextField txtAddCourseName;
 
     @FXML
-    private TextField txtCredits;
+    private TextField txtAddCredits;
 
     @FXML
-    private TextField txtHours;
+    private TextField txtAddHours;
 
     @FXML
-    private TextField txtMaxParticipants;
+    private TextField txtAddCapacity;
 
     @FXML
-    private Button btnAddCourse;
+    private Button btnAddCourseAction;
 
     @FXML
     private Label lblWelcomeName;
@@ -39,20 +43,42 @@ public class StaffController {
     private Label lblDate;
 
     @FXML
-    private void initialize() {
+    private VBox paneAddCourse;
 
-        btnAddCourse.setOnAction(event -> addCourse());
+    @FXML
+    private VBox paneDeleteCourse;
+
+    @FXML
+    private VBox paneEditCourse;
+
+    @FXML
+    private StackPane contentArea;
+
+    @FXML
+    private ToggleButton btnSideAdd;
+
+    @FXML
+    private ToggleButton btnSideDelete;
+
+    @FXML
+    private ToggleButton btnSideEdit;
+
+
+    @FXML
+    private void initialize() {
+        contentArea.getChildren().setAll(paneAddCourse);
+        btnAddCourseAction.setOnAction(event -> addCourse());
 
     }
 
     private void addCourse() {
         try {
 
-            String courseId = txtCourseId.getText();
-            String courseName = txtCourseName.getText();
-            double courseCredits = Double.parseDouble(txtCredits.getText());
-            int courseHours = Integer.parseInt(txtHours.getText());
-            int maxParticipants = Integer.parseInt(txtMaxParticipants.getText());
+            String courseId = txtAddCourseId.getText();
+            String courseName = txtAddCourseName.getText();
+            double courseCredits = Double.parseDouble(txtAddCredits.getText());
+            int courseHours = Integer.parseInt(txtAddHours.getText());
+            int maxParticipants = Integer.parseInt(txtAddCapacity.getText());
 
 
             CourseDTO newCourse = new CourseDTO(courseId, courseName, courseCredits, courseHours, maxParticipants);
@@ -86,6 +112,21 @@ public class StaffController {
             alert.setContentText("Failed to add course. Check console for errors.");
             alert.showAndWait();
         }
+    }
+    @FXML
+    private void switchForm(ActionEvent event){
+        Object source= event.getSource();
+
+        contentArea.getChildren().clear();
+
+        if(source == btnSideAdd){
+            contentArea.getChildren().add(paneAddCourse);
+        }else if(source == btnSideDelete){
+            contentArea.getChildren().add(paneDeleteCourse);
+        } else if(source == btnSideEdit) {
+            contentArea.getChildren().add(paneEditCourse);
+        }
+
     }
 
 
