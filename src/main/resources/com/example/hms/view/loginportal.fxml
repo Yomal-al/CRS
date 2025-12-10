@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1150.0" prefWidth="450.0" stylesheets="/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hms.controller.LoginController">
+   <children>
+      <!-- Background with gradient -->
+      <Rectangle width="450.0" height="1150.0" arcWidth="0.0" arcHeight="0.0">
+         <fill>
+            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+               <stops>
+                  <Stop offset="0.0">
+                     <color>
+                        <Color red="0.4" green="0.2" blue="0.8" opacity="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.2" green="0.5" blue="0.9" opacity="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+
+      <AnchorPane prefHeight="1150.0" prefWidth="450.0">
+         <children>
+            <!-- Register Form -->
+            <AnchorPane fx:id="registerForm" layoutX="25.0" layoutY="150.0" prefHeight="850.0" prefWidth="400.0" style="-fx-background-color: rgba(255, 255, 255, 0.98); -fx-background-radius: 25; -fx-border-radius: 25;" visible="false" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0">
+               <effect>
+                  <DropShadow radius="30.0" offsetY="10.0">
+                     <color>
+                        <Color red="0.0" green="0.0" blue="0.0" opacity="0.3" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="40.0" prefWidth="300.0" spacing="15.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+                     <children>
+                        <!-- Header -->
+                        <Label text="Create Account" textFill="#2D3748">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+
+                        <Label text="Join us today" textFill="#718096">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+
+                        <!-- Username Field -->
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Username" textFill="#4A5568">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="register_userName" prefHeight="45.0" promptText="Enter your username" style="-fx-background-color: #F7FAFC; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Label fx:id="registerUserNameError" text="*Please enter a username" textFill="#E53E3E" visible="false">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                        <!-- Password Field -->
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Password" textFill="#4A5568">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="register_password" prefHeight="45.0" promptText="Enter your password" style="-fx-background-color: #F7FAFC; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </PasswordField>
+                              <Label fx:id="registerPasswordError" text="*Please enter the password" textFill="#E53E3E" visible="false">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                        <!-- Confirm Password Field -->
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Confirm Password" textFill="#4A5568">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="confirm_password" prefHeight="45.0" promptText="Confirm your password" style="-fx-background-color: #F7FAFC; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </PasswordField>
+                              <Label fx:id="passwordsDoNotMatch" text="*Passwords do not match" textFill="#E53E3E" visible="false">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                        <!-- User Role Selector -->
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="User Role" textFill="#4A5568">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="registerUser" prefHeight="45.0" prefWidth="300.0" promptText="Select your role" style="-fx-background-color: #F7FAFC; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-border-width: 1.5;">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Student" />
+                                       <String fx:value="Admin" />
+                                       <String fx:value="Administrative Staff" />
+                                    </FXCollections>
+                                 </items>
+                              </ComboBox>
+                              <Label fx:id="selectUserErrorRegister" text="*Please select a role" textFill="#E53E3E" visible="false">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                        <!-- Show Password Checkbox -->
+                        <CheckBox fx:id="showPassword1" mnemonicParsing="false" onAction="#passwordToggle" text="Show Password" textFill="#4A5568">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </CheckBox>
+
+                        <!-- Register Button -->
+                        <Button fx:id="registerButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#registerButtonClick" prefHeight="50.0" style="-fx-background-color: linear-gradient(to right, #667eea 0%, #764ba2 100%); -fx-background-radius: 12; -fx-text-fill: white; -fx-cursor: hand;" text="Create Account" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <effect>
+                              <DropShadow radius="10.0" offsetY="5.0">
+                                 <color>
+                                    <Color red="0.4" green="0.2" blue="0.8" opacity="0.4" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
+
+                        <!-- Back to Login Link -->
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="Already have an account?" textFill="#718096">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink fx:id="registerToLogin" onAction="#switchToLogin" text="Sign In" textFill="#667eea">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+
+            <!-- Login Form -->
+            <AnchorPane fx:id="loginForm" layoutX="25.0" layoutY="150.0" prefHeight="850.0" prefWidth="400.0" style="-fx-background-color: rgba(255, 255, 255, 0.98); -fx-background-radius: 25; -fx-border-radius: 25;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0">
+               <effect>
+                  <DropShadow radius="30.0" offsetY="10.0">
+                     <color>
+                        <Color red="0.0" green="0.0" blue="0.0" opacity="0.3" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="40.0" prefWidth="300.0" spacing="15.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+                     <children>
+                        <!-- Header -->
+                        <Label text="Welcome Back" textFill="#2D3748">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+
+                        <Label text="Admin Portal" textFill="#718096">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+
+                        <!-- Username Field -->
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Username" textFill="#4A5568">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="login_userName" prefHeight="45.0" promptText="Enter your username" style="-fx-background-color: #F7FAFC; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Label fx:id="usernameError" text="*Please enter a username" textFill="#E53E3E" visible="false">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                        <!-- Password Field -->
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Password" textFill="#4A5568">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="login_password" prefHeight="45.0" promptText="Enter your password" style="-fx-background-color: #F7FAFC; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </PasswordField>
+                              <Label fx:id="passwordError" text="*Please enter a password" textFill="#E53E3E" visible="false">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                        <!-- User Role Selector -->
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="User Role" textFill="#4A5568">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="loginUserRole" prefHeight="45.0" prefWidth="300.0" promptText="Select your role" style="-fx-background-color: #F7FAFC; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-border-width: 1.5;" visibleRowCount="3">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Student" />
+                                       <String fx:value="Admin" />
+                                       <String fx:value="Administrative Staff" />
+                                    </FXCollections>
+                                 </items>
+                              </ComboBox>
+                              <Label fx:id="selectUserError" text="*Please select a role" textFill="#E53E3E" visible="false">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                        <!-- Show Password Checkbox -->
+                        <CheckBox fx:id="showPassword" mnemonicParsing="false" onAction="#passwordToggle" text="Show Password" textFill="#4A5568">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </CheckBox>
+
+                        <!-- Error Message -->
+                        <Label fx:id="namePasswordNotFoundError" text="Username, password or role is incorrect" textFill="#E53E3E" visible="false" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+
+                        <!-- Login Button -->
+                        <Button fx:id="loginButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="50.0" style="-fx-background-color: linear-gradient(to right, #667eea 0%, #764ba2 100%); -fx-background-radius: 12; -fx-text-fill: white; -fx-cursor: hand;" text="Sign In" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <effect>
+                              <DropShadow radius="10.0" offsetY="5.0">
+                                 <color>
+                                    <Color red="0.4" green="0.2" blue="0.8" opacity="0.4" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
+
+                        <!-- Register Link -->
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="Don't have an account?" textFill="#718096">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink fx:id="loginToRegister" onAction="#switchToRegister" text="Register here" textFill="#667eea">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
