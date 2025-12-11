@@ -42,26 +42,6 @@ public class StudentController{
     @FXML
     private TextField studentDetailsName;
 
-    //-------------Panes---------------
-
-    @FXML
-    private StackPane acedemicRecordPane;
-
-    @FXML
-    private StackPane courseDetailsPane;
-
-    @FXML
-    private StackPane enrollmentManagementPane;
-
-    @FXML
-    private StackPane reportingPane;
-
-    @FXML
-    private StackPane studentDetailsPane;
-
-    @FXML
-    private AnchorPane welcomeScreen;
-
 
     //------------Table---------------
 
@@ -96,39 +76,9 @@ public class StudentController{
 
     }
 
-    @FXML
-    private void acedemicRecordButtonClick(ActionEvent event) {
-
-        acedemicRecordPane.setVisible(true);
-        welcomeScreen.setVisible(false);
-        studentDetailsPane.setVisible(false);
-        enrollmentManagementPane.setVisible(false);
-        courseDetailsPane.setVisible(false);
-        reportingPane.setVisible(false);
-
-
-    }
 
     @FXML
-    private void reportingButtonClick() {
-
-        reportingPane.setVisible(true);
-        welcomeScreen.setVisible(false);
-        studentDetailsPane.setVisible(false);
-        enrollmentManagementPane.setVisible(false);
-        courseDetailsPane.setVisible(false);
-        acedemicRecordPane.setVisible(false);
-    }
-
-    @FXML
-    private void courseDetailsButtonClick() {
-
-        courseDetailsPane.setVisible(true);
-        welcomeScreen.setVisible(false);
-        studentDetailsPane.setVisible(false);
-        enrollmentManagementPane.setVisible(false);
-        reportingPane.setVisible(false);
-        acedemicRecordPane.setVisible(false);
+    private void courseDetails() {
 
         courseId.setCellValueFactory(new PropertyValueFactory<>("courseId"));
         courseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
@@ -154,44 +104,5 @@ public class StudentController{
 
 
     }
-
-    @FXML
-    private void enrollmentManagementButtonClick() {
-
-        enrollmentManagementPane.setVisible(true);
-        welcomeScreen.setVisible(false);
-        studentDetailsPane.setVisible(false);
-        courseDetailsPane.setVisible(false);
-        reportingPane.setVisible(false);
-        acedemicRecordPane.setVisible(false);
-    }
-
-    @FXML
-    private void studentDetailsButtonClick() {
-
-        studentDetailsPane.setVisible(true);
-        welcomeScreen.setVisible(false);
-        enrollmentManagementPane.setVisible(false);
-        courseDetailsPane.setVisible(false);
-        reportingPane.setVisible(false);
-        acedemicRecordPane.setVisible(false);
-    }
-
-
-    //------------MenuButton----------------
-
-    @FXML
-    private void menuItemHomeSelect() {
-
-        welcomeScreen.setVisible(true);
-        studentDetailsPane.setVisible(false);
-        enrollmentManagementPane.setVisible(false);
-        courseDetailsPane.setVisible(false);
-        reportingPane.setVisible(false);
-        acedemicRecordPane.setVisible(false);
-
-
-    }
-
 
 }

@@ -98,9 +98,9 @@
                </content>
             </Tab>
 
-            <Tab text="📚 Course Catalog">
+            <Tab text="📚 Course Catalog" onSelectionChanged="#courseDetails">
                <content>
-                  <AnchorPane>
+                  <AnchorPane >
                      <children>
                         <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
                            <children>

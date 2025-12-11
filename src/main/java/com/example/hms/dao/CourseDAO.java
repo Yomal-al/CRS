@@ -14,6 +14,7 @@ import java.sql.Statement;
 public class CourseDAO{
 
     public ObservableList<CourseDTO> insertTableView() {
+
         ObservableList<CourseDTO> list= FXCollections.observableArrayList();
 
 
