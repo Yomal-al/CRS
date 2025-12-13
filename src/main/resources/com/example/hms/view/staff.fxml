@@ -7,9 +7,10 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -21,9 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-
-<AnchorPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #F5F7FA;" stylesheets="/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hms.controller.StaffController">
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #F5F7FA;" stylesheets="/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hms.controller.StaffController">
    <children>
       <TabPane layoutX="10.0" layoutY="10.0" prefHeight="900.0" prefWidth="1200.0" side="TOP" styleClass="modern-tab-pane" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -31,7 +30,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" style="-fx-padding: 40;">
+                        <VBox spacing="30.0" style="-fx-padding: 40;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <VBox spacing="5.0">
                                  <children>
@@ -135,18 +134,18 @@
                                  <font><Font name="System Bold" size="12.0" /></font>
                               </Label>
 
-                              <ToggleButton fx:id="btnSideAdd" onAction="#switchForm" alignment="CENTER_LEFT" maxWidth="200.0" selected="true" styleClass="sidebar-toggle" text=" Add New Course">
+                              <ToggleButton fx:id="btnSideAdd" alignment="CENTER_LEFT" maxWidth="200.0" onAction="#switchForm" selected="true" styleClass="sidebar-toggle" text=" Add New Course">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="courseMenu" />
                                  </toggleGroup>
                                  <font><Font name="System Bold" size="14.0" /></font>
                               </ToggleButton>
 
-                              <ToggleButton fx:id="btnSideDelete" alignment="CENTER_LEFT" onAction="#switchForm" maxWidth="200.0" styleClass="sidebar-toggle" text="🗑  Delete Course" toggleGroup="$courseMenu">
+                              <ToggleButton fx:id="btnSideDelete" alignment="CENTER_LEFT" maxWidth="200.0" onAction="#switchForm" styleClass="sidebar-toggle" text="🗑  Delete Course" toggleGroup="$courseMenu">
                                  <font><Font name="System Bold" size="14.0" /></font>
                               </ToggleButton>
 
-                              <ToggleButton fx:id="btnSideEdit" alignment="CENTER_LEFT" onAction="#switchForm" maxWidth="200.0"  styleClass="sidebar-toggle" text="✏  Edit Course" toggleGroup="$courseMenu">
+                              <ToggleButton fx:id="btnSideEdit" alignment="CENTER_LEFT" maxWidth="200.0" onAction="#switchForm" styleClass="sidebar-toggle" text="✏  Edit Course" toggleGroup="$courseMenu">
                                  <font><Font name="System Bold" size="14.0" /></font>
                               </ToggleButton>
                            </children>
@@ -159,7 +158,7 @@
                               <StackPane style="-fx-padding: 30;">
                                  <children>
 
-                                    <VBox fx:id="paneAddCourse" maxHeight="-Infinity"  maxWidth="-Infinity" prefWidth="700.0" spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 40;">
+                                    <VBox fx:id="paneAddCourse" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="700.0" spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 40;">
                                        <effect>
                                           <DropShadow color="#0000001a" offsetY="5.0" radius="15.0" />
                                        </effect>
@@ -253,10 +252,10 @@
                                              </children>
                                           </VBox>
 
-                                          <HBox spacing="15.0" alignment="CENTER_LEFT">
+                                          <HBox alignment="CENTER_LEFT" spacing="15.0">
                                              <children>
                                                 <ComboBox fx:id="comboEditCourse" maxWidth="Infinity" prefHeight="40.0" promptText="Select Course to Edit" style="-fx-background-color: #F0F2F5;" HBox.hgrow="ALWAYS" />
-                                                <Button  prefHeight="40.0" style="-fx-background-color: #475C6C; -fx-text-fill: white;" text="Load Details" />
+                                                <Button prefHeight="40.0" style="-fx-background-color: #475C6C; -fx-text-fill: white;" text="Load Details" />
 
                                              </children>
                                           </HBox>
@@ -302,13 +301,103 @@
                </content>
             </Tab>
 
-            <Tab text="👤 Student Management">
+            <Tab text="👤 Student Management" onSelectionChanged="#courseDetails">
                <content>
                   <AnchorPane style="-fx-background-color: #F5F7FA;">
-                     <children>
-                        <VBox spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-                        </VBox>
-                     </children>
+                     <VBox spacing="25.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                        <children>
+                           <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;">
+                              <effect>
+                                 <DropShadow color="#0000001a" offsetY="5.0" radius="15.0" />
+                              </effect>
+                              <children>
+                                 <Label text="Find Student:" textFill="#57606f">
+                                    <font><Font name="System Bold" size="14.0" /></font>
+                                 </Label>
+                                 <TextField fx:id="txtSearchStudent" prefWidth="300.0" promptText="Enter Student ID (e.g., STU001)" style="-fx-background-color: #F0F2F5; -fx-font-size: 14;" />
+                                 <Button fx:id="btnSearchStudent" mnemonicParsing="false" style="-fx-background-color: #475C6C; -fx-text-fill: white; -fx-cursor: hand;" text="Search Record">
+                                    <font><Font name="System Bold" size="14.0" /></font>
+                                    <padding><Insets bottom="8" left="20" right="20" top="8" /></padding>
+                                 </Button>
+                              </children>
+                           </HBox>
+
+                           <VBox spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 40;" VBox.vgrow="ALWAYS">
+                              <effect>
+                                 <DropShadow color="#0000001a" offsetY="5.0" radius="15.0" />
+                              </effect>
+                              <children>
+                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                       <Label text="Academic Profile &amp; History" textFill="#2c3e50">
+                                          <font><Font name="Segoe UI Bold" size="24.0" /></font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <Separator prefWidth="200.0" />
+
+                                 <GridPane hgap="30.0" vgap="25.0">
+                                    <columnConstraints>
+                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="150.0" />
+                                       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                       <Label text="Student Name" textFill="#7f8c8d">
+                                          <font><Font name="System Bold" size="14.0" /></font>
+                                       </Label>
+                                       <TextField fx:id="txtStudentName" editable="false" style="-fx-background-color: #F8F9FA; -fx-text-fill: #2c3e50;" text="--" GridPane.columnIndex="1">
+                                          <font><Font name="System Bold" size="14.0" /></font>
+                                       </TextField>
+
+                                       <Label text="Current Program" textFill="#7f8c8d" GridPane.rowIndex="1">
+                                          <font><Font name="System Bold" size="14.0" /></font>
+                                       </Label>
+                                       <TextField fx:id="txtStudentProgram" editable="false" style="-fx-background-color: #F8F9FA;" text="--" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                       <Label text="Select Course" textFill="#7f8c8d" GridPane.rowIndex="2">
+                                          <font><Font name="System Bold" size="14.0" /></font>
+                                       </Label>
+                                       <ComboBox fx:id="comboStudentCourse" maxWidth="300.0"  promptText="Choose a course to grade..." style="-fx-background-color: #F0F2F5; -fx-border-color: #BDC3C7; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                       <Label text="Course GPA" textFill="#2980b9" GridPane.rowIndex="3">
+                                          <font><Font name="System Bold" size="14.0" /></font>
+                                       </Label>
+                                       <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <TextField fx:id="txtStudentGPA" maxWidth="150.0" promptText="0.00" style="-fx-background-color: #F0F2F5; -fx-border-color: #BDC3C7; -fx-border-radius: 5;" />
+                                          <Label text="(Scale of 4.0)" textFill="#95a5a6" />
+                                       </HBox>
+
+                                       <Label text="Notes / History" textFill="#7f8c8d" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                          <font><Font name="System Bold" size="14.0" /></font>
+                                          <padding><Insets top="10.0" /></padding>
+                                       </Label>
+                                       <TextArea fx:id="txtStudentNotes" prefHeight="150.0" promptText="Enter academic history or remarks for this course..." style="-fx-background-color: #F0F2F5; -fx-wrap-text: true;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    </children>
+                                 </GridPane>
+
+                                 <HBox alignment="CENTER_RIGHT" spacing="15.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                       <Button fx:id="btnClearForm" style="-fx-background-color: transparent; -fx-text-fill: #7f8c8d; -fx-cursor: hand;" text="Clear Form">
+                                          <font><Font size="14.0" /></font>
+                                       </Button>
+                                       <Button fx:id="btnUpdateStudent" mnemonicParsing="false" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;" text="UPDATE STUDENT RECORD">
+                                          <font><Font name="System Bold" size="14.0" /></font>
+                                          <padding><Insets bottom="12" left="25" right="25" top="12" /></padding>
+                                       </Button>
+                                    </children>
+                                    <padding><Insets top="20.0" /></padding>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                     </VBox>
                   </AnchorPane>
                </content>
             </Tab>

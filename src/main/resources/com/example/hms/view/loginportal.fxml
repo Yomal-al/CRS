@@ -304,7 +304,7 @@
                         </VBox>
 
                         <!-- Show Password Checkbox -->
-                        <CheckBox fx:id="showPassword" mnemonicParsing="false" onAction="#passwordToggle" text="Show Password" textFill="#4A5568">
+                        <CheckBox fx:id="showLoginPassword" mnemonicParsing="false" onAction="#toggleShowPassword" text="Show Password" textFill="#4A5568">
                            <font>
                               <Font size="12.0" />
                            </font>
