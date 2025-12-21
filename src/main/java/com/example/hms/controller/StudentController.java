@@ -32,6 +32,7 @@ public class StudentController {
             String userName=UserSession.getInstance().getUser().getName();
             int userId= UserSession.getInstance().getUser().getId();
 
+
             userNameLabel.setText(userName);
 
         }else {

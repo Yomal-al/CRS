@@ -28,13 +28,13 @@ public class DBConnection {
                         "password VARCHAR(255));";
 
                 String course_details = "CREATE TABLE IF NOT EXISTS course_details(course_id VARCHAR(50) PRIMARY KEY , course_name VARCHAR(50) ,course_credits INT ,course_hours INT,max_participants INT)";
-                String student_acedemicTable= "CREATE TABLE IF NOT EXISTS student_academicDetails (\n" +
-                        "    student_id INT,\n" +
+                String student_acedemicTable = "CREATE TABLE IF NOT EXISTS student_academicDetails (\n" +
+                        "    record_id INT AUTO_INCREMENT PRIMARY KEY,\n" +
+                        "    student_id INT NOT NULL,\n" +
                         "    course_id VARCHAR(50),\n" +
-                        "    student_name VARCHAR(50),\n"+
-                        "    gpa DOUBLE,\n"+
-                        "    history VARCHAR(500),\n"+
-                        "    PRIMARY KEY (student_id, course_id),\n" +
+                        "    student_name VARCHAR(50),\n" +
+                        "    gpa DOUBLE,\n" +
+                        "    history VARCHAR(500),\n" +
                         "    FOREIGN KEY (student_id) REFERENCES student_details(student_id),\n" +
                         "    FOREIGN KEY (course_id) REFERENCES course_details(course_id)\n" +
                         ");";

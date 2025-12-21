@@ -43,8 +43,5 @@ public class CourseDAO{
 
     }
 
-//    public ObervableList<StudentDTO> insertStudentDetails(){
-//        return null;
-//    }
 
 }

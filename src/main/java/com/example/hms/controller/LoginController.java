@@ -2,6 +2,7 @@ package com.example.hms.controller;
 
 import com.example.hms.dao.LoginDAO;
 import com.example.hms.dto.LoginDTO;
+import com.example.hms.dto.StudentDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,6 +102,8 @@ public class LoginController {
         System.out.println(loginRole);
         boolean checkRole=((loginRole==null||loginRole.trim().isEmpty()? false : true));
 
+
+
         if (checkName && checkPassword && checkRole) {
             try {
                 Connection connection = DBConnection.getConnection();
@@ -113,6 +116,7 @@ public class LoginController {
                 if (user != null) {
 
                     UserSession.setSession(user);
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Course Registration System");
                     alert.setHeaderText("Successfully Logged In!");
@@ -124,13 +128,13 @@ public class LoginController {
                     namePasswordNotFoundError.setVisible(false);
 
 
+
                     try {
                         Stage curentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         curentStage.close();
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/student.fxml"));
 
                         if (loginRole.equals("Student")) {
-
                             fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/student.fxml"));
 
                         } else if (loginRole.equals("Admin")) {

@@ -1,12 +1,14 @@
 package com.example.hms.controller;
 
 import com.example.hms.dto.LoginDTO;
+import com.example.hms.dto.StudentDTO;
 
 public class UserSession {
 
     private static UserSession instance;
 
     private LoginDTO currentUser;
+    private StudentDTO currentStudent;
 
     private UserSession(LoginDTO currentUser){
         this.currentUser=currentUser;
@@ -26,8 +28,18 @@ public class UserSession {
         return currentUser;
     }
 
+
+    public void setCurrentStudent(StudentDTO student){
+        this.currentStudent=student;
+    }
+
+    public StudentDTO getStudent(){
+        return currentStudent;
+    }
+
     public static void cleanUserSession(){
         instance=null;
     }
+
 }
 

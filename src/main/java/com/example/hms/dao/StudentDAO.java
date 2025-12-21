@@ -13,6 +13,15 @@ import java.sql.Statement;
 
 public class StudentDAO {
 
+    private final Connection connection;
+
+    public StudentDAO(Connection connection) {
+        this.connection = connection;
+    }
+
+    public void getStudentData(){
+
+    }
 
 
 }

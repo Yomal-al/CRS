@@ -7,7 +7,6 @@ public class StudentDTO{
     private  double gpa;
     private  String history;
 
-
     public StudentDTO(String courseid, int studentid, double gpa, String history){
         this.courseid = courseid;
         this.studentid = studentid;
@@ -15,13 +14,10 @@ public class StudentDTO{
         this.history = history;
     }
 
-
     public StudentDTO(String courseid,int studentid){
         this.courseid=courseid;
         this.studentid=studentid;
     }
-
-
 
     public int getStudentid() {
         return studentid;
@@ -45,6 +41,16 @@ public class StudentDTO{
 
     public String getCourseid() {
         return courseid;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDTO{" +
+                "courseid='" + courseid + '\'' +
+                ", studentid=" + studentid +
+                ", gpa=" + gpa +
+                ", history='" + history + '\'' +
+                '}';
     }
 
 }
