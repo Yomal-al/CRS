@@ -54,6 +54,9 @@
                               <Label text="Welcome Back!" textFill="#2c3e50">
                                  <font><Font name="Segoe UI Bold" size="32.0" /></font>
                               </Label>
+                              <Label fx:id="userNameLabel" text="Loading..." textFill="#2c3e50">
+                                 <font><Font name="Segoe UI Bold" size="28.0" /></font>
+                              </Label>
 
                               <GridPane hgap="30.0" vgap="30.0">
                                  <columnConstraints>
@@ -98,7 +101,7 @@
                </content>
             </Tab>
 
-            <Tab text="📚 Course Catalog" onSelectionChanged="#courseDetails">
+            <Tab text="📚 Course Catalog" >
                <content>
                   <AnchorPane >
                      <children>

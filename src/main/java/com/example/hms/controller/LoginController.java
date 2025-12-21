@@ -41,7 +41,7 @@ public class LoginController {
     private Label namePasswordNotFoundError;
 
     @FXML
-    private CheckBox showPassword;
+    private CheckBox showLoginPassword;
 
     @FXML
     private TextField login_userName;
@@ -76,7 +76,9 @@ public class LoginController {
 
     @FXML
     private void toggleShowPassword(ActionEvent event) {
-        boolean checkBox=showPassword.isSelected();
+        boolean checkBox=showLoginPassword.isSelected();
+
+
 
     }
 
@@ -106,7 +108,11 @@ public class LoginController {
 
                 LoginDTO user = loginDAO.getUser(UserName, Password, loginRole);
 
+
+
                 if (user != null) {
+
+                    UserSession.setSession(user);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Course Registration System");
                     alert.setHeaderText("Successfully Logged In!");
@@ -131,11 +137,11 @@ public class LoginController {
 
                             fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/admin.fxml"));
 
-                        } else if (loginRole.equals("Administrative Staff")) {
+                        } else if (loginRole.equals("Administrative Staff")){
 
                             fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hms/view/staff.fxml"));
 
-                        } else {
+                        }else{
                         }
 
                         Parent root = fxmlLoader.load();
@@ -158,11 +164,9 @@ public class LoginController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-
+        }else{
         }
         return loginRole;
-
     }
 
     @FXML
@@ -233,7 +237,7 @@ public class LoginController {
 
         try{
             register_password.textProperty().addListener((obs, oldText, newText) -> {
-                if (!showPassword.isSelected()) {
+                if (!showLoginPassword.isSelected()) {
                     register_password.setText(newText);
                 }
             });

@@ -16,8 +16,7 @@ public class LoginDAO {
     public boolean saveUserStudent(LoginDTO user) {
         String sql1 = "INSERT INTO student_details(name ,password ) VALUES (?,?)";
 
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql1);
+        try (PreparedStatement statement = connection.prepareStatement(sql1);){
 
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
@@ -26,7 +25,7 @@ public class LoginDAO {
             return rowsAffected > 0;
 
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
 
         }

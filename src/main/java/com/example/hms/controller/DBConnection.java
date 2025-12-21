@@ -31,6 +31,9 @@ public class DBConnection {
                 String student_acedemicTable= "CREATE TABLE IF NOT EXISTS student_academicDetails (\n" +
                         "    student_id INT,\n" +
                         "    course_id VARCHAR(50),\n" +
+                        "    student_name VARCHAR(50),\n"+
+                        "    gpa DOUBLE,\n"+
+                        "    history VARCHAR(500),\n"+
                         "    PRIMARY KEY (student_id, course_id),\n" +
                         "    FOREIGN KEY (student_id) REFERENCES student_details(student_id),\n" +
                         "    FOREIGN KEY (course_id) REFERENCES course_details(course_id)\n" +

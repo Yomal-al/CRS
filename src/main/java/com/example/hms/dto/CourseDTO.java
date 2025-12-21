@@ -8,10 +8,9 @@ import javafx.beans.property.StringProperty;
 public class CourseDTO {
 
     private final SimpleStringProperty courseId;
-    private final SimpleStringProperty courseName;
-    private final SimpleDoubleProperty courseCredits;
-    private final SimpleIntegerProperty courseHours;;
-    private final SimpleIntegerProperty maxParticipants;
+    private SimpleStringProperty courseName;
+    private SimpleDoubleProperty courseCredits;
+    private SimpleIntegerProperty courseHours,maxParticipants,studentId;
 
     public CourseDTO(String courseId , String courseName , Double courseCredits , Integer courseHours , Integer maxParticipants) {
 
@@ -23,44 +22,32 @@ public class CourseDTO {
 
     }
 
-//    public CourseDTO(String courseName) {
-//        this.courseName = new SimpleStringProperty(courseName);
-//    }
+    public CourseDTO(String courseId, Integer studentId) {
+        this.courseId = new SimpleStringProperty(courseId);
+        this.studentId = new SimpleIntegerProperty(studentId);
+    }
 
 
     public String getCourseId() {
         return courseId.get();
     }
-
     public String getCourseName() {
         return courseName.get();
     }
-
     public double getCourseCredits() {
         return courseCredits.get();
     }
-
     public int getCourseHours() {
         return courseHours.get();
     }
-
     public int getMaxParticipants() {
         return maxParticipants.get();
     }
-
-    public CourseDTO(SimpleStringProperty courseId, String courseName, SimpleDoubleProperty courseCredits, SimpleIntegerProperty courseHours, SimpleIntegerProperty maxParticipants) {
-        this.courseId = courseId;
-        this.courseName = new SimpleStringProperty(courseName);
-        this.courseCredits = courseCredits;
-        this.courseHours = courseHours;
-        this.maxParticipants = maxParticipants;
-    }
+    public int getStudentId() { return studentId.get();}
 
 
 
-    public StringProperty courseNameProperty() {
-        return courseName;
-    }
+
 
 
 }

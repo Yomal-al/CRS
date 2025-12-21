@@ -13,16 +13,14 @@ import java.sql.Statement;
 
 public class CourseDAO{
 
-    public ObservableList<CourseDTO> insertTableView() {
+    public ObservableList<CourseDTO> getAllCourses() {
 
         ObservableList<CourseDTO> list= FXCollections.observableArrayList();
 
 
-        try {
-            Connection connection = DBConnection.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM course_details");
-
+        try ( Connection connection = DBConnection.getConnection();
+              Statement statement = connection.createStatement();
+              ResultSet resultSet = statement.executeQuery("SELECT * FROM course_details");){
 
 
             while (resultSet.next()) {
@@ -45,7 +43,7 @@ public class CourseDAO{
 
     }
 
-//    public ObervableList<StudentDTO>insertStudentDetails(){
+//    public ObervableList<StudentDTO> insertStudentDetails(){
 //        return null;
 //    }
 

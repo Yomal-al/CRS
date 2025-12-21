@@ -3,6 +3,7 @@ package com.example.hms.controller;
 import com.example.hms.dao.SaveCourseDAO;
 import com.example.hms.dto.CourseDTO;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -130,4 +131,7 @@ public class StaffController {
     }
 
 
+    public void courseDetails(Event event) {
+
+    }
 }
